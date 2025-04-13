@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    body{
+      text-align: center;
+    }
+  </style>
+  
+  <title>cricket</title>
+</head>
+<body>
+  <h1>Bat Ball Stump</h1>
+
+  <button onclick=" 
+  let computerChoise= computerkicoise();
+  let result = getresult('bat', computerChoise);
+  showresult('bat',computerChoise , result)
+  ">Bat</button>
+
+  <button onclick=" 
+  let computerChoise= computerkicoise();
+  result = getresult('ball', computerChoise)
+  showresult('ball',computerChoise , result)
+  ">Ball</button>
+
+  <button onclick=" 
+  let computerChoise= computerkicoise();
+  result = getresult('stump', computerChoise)
+  showresult('stump',computerChoise , result)
+  ">Stump</button>
+
+  
+  <script>
+    let score={
+      win : 0,
+      lose : 0,
+      tie : 0,
+    };
+
+    function computerkicoise(){
+      let randomnumber = Math.random() * 3;
+      if ( randomnumber > 0 && randomnumber <=1){
+        return 'Bat';
+      }else if ( randomnumber > 1 && randomnumber <= 2){
+        return 'Ball';
+      }else {  return 'Stump';
+      }
+    }
+
+    function getresult(usermove,computermove){
+      if(usermove === 'bat'){
+        if( computermove === 'Ball'){
+          score.win++;
+        return 'user win';
+        }else if(computermove === 'Bat'){
+          score.tie++;
+        return 'Game Tie';
+        }else {
+          score.lose++;
+        return 'computer win';}
+      }else if(usermove === 'ball'){
+        if( computermove === 'Stump'){
+          score.win++;
+        return 'user win';
+        }else if(computermove === 'Ball'){
+          score.tie++;
+          return  'Game Tie';
+        }else {
+          score.lose++;
+         return 'computer win';}
+      }else{
+        if( computermove === 'Bat'){
+          score.win++;
+         return 'user win';
+        }else if(computermove === 'Stump'){
+          score.tie++;
+          return  'Game Tie';
+        }else {
+          score.lose++;
+        return 'computer win';}
+      }
+    }
+
+    function showresult(usermove,computermove,result){
+      alert(`
+      you chosse ${usermove} 
+      computer chose ${computermove} 
+      ${result}
+      win=${score.win}
+      lose=${score.lose}
+      tie=${score.tie}`);
+    }
+  </script>
+  
+</body>
+</html>
