@@ -36,6 +36,11 @@
       win : 0,
       lose : 0,
       tie : 0,
+      diaplayscore: function(){
+        return  `win=${score.win}
+      lose=${score.lose}
+      tie=${score.tie}`;
+      }
     };
 
     function computerkicoise(){
@@ -87,9 +92,8 @@
       you chosse ${usermove} 
       computer chose ${computermove} 
       ${result}
-      win=${score.win}
-      lose=${score.lose}
-      tie=${score.tie}`);
+      ${score.diaplayscore()}`);
+     
     }
   </script>
   
