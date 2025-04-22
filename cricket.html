@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <style>
-    body{
-      text-align: center;
-    }
-  </style>
-  
+  <link rel="stylesheet" href="cricket.css">
   <title>cricket</title>
 </head>
 <body>
   <h1>Bat Ball Stump</h1>
 
-  <button onclick=" 
+
+  <button class="choise-button" onclick=" 
   let computerChoise= computerkicoise();
   let result = getresult('bat', computerChoise);
   showresult('bat',computerChoise , result)
-  ">Bat</button>
+  ">  <img src="images/bat.png" alt="bat-image" class="choise-image"></button>
 
-  <button onclick=" 
-  let computerChoise= computerkicoise();
+  <button class="choise-button" onclick=" 
+  computerChoise= computerkicoise();
   result = getresult('ball', computerChoise)
   showresult('ball',computerChoise , result)
-  ">Ball</button>
+  "><img src="images/ball.png" alt="ball-image" class="choise-image"></button>
 
-  <button onclick=" 
-  let computerChoise= computerkicoise();
+  <button class="choise-button" onclick=" 
+  computerChoise= computerkicoise();
   result = getresult('stump', computerChoise)
   showresult('stump',computerChoise , result)
-  ">Stump</button>
+  "><img src="images/stump.png" alt="stump-image" class="choise-image"></button>
+
+ 
+
+  <h3 id="user-move"></h3>
+  <h3 id="computer-move"></h3>
+  <h3 id="result"></h3>
+  <h3 id="score"></h3>
 
   <button onclick="localStorage.clear()
   restScore();
@@ -42,6 +45,7 @@
 
     function restScore(scoreStr) {
       score = scoreStr ? JSON.parse(scoreStr) : {
+      
         win : 0,
         lose : 0,
         tie : 0,
@@ -49,10 +53,11 @@
 
 
     score.diaplayscore = function(){
-      return  `win=${score.win}
-      lose=${score.lose}
-      tie=${score.tie}`;
+      return  `
+      score: win=${score.win} lose=${score.lose} tie=${score.tie}`;
       };
+
+      showresult();
     }
 
     function computerkicoise(){
@@ -101,11 +106,23 @@
 
     function showresult(usermove,computermove,result){
       localStorage.setItem('score', JSON.stringify(score));
-      alert(`
-      you chosse ${usermove} 
-      computer chose ${computermove} 
-      ${result}
-      ${score.diaplayscore()}`);
+
+      document.querySelector('#user-move').innerText = 
+       usermove ? `you chosse ${usermove}` : ''; //!== undefined (if we not use this then it check by truthy or falsy )
+
+      document.querySelector('#computer-move').innerText = 
+       computermove !== undefined ? `computer chose ${computermove}` : '';
+
+      document.querySelector('#result').innerText =
+       result || ''; //result !== undefined ? result (use short cut insted of this method)
+
+      document.querySelector('#score').innerText= score.diaplayscore();
+
+     // alert(`
+     // you chosse ${usermove} 
+     // computer chose ${computermove} 
+     // ${result}
+     // ${score.diaplayscore()}`);
      
     }
   </script>
